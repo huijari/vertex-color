@@ -1,0 +1,14 @@
+{
+  "name": "tp3",
+  "version": "1.0.0",
+  "transpile": {
+    "exec": "cm-c",
+    "extension": "c",
+    "formatter": "clang-format -style=chromium"
+  },
+  "compile": {
+    "exec": "clang",
+    "flags": "-Ot -Oz -Wall -Wextra -pedantic -g",
+    "files": "*.c"
+  }
+}
