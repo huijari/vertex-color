@@ -4,6 +4,7 @@
 
 (function node_new () -> Node*
 	(decl ((Node* node = (malloc (sizeof Node)))))
+	(= node->color 0)
 	(= node->neighbors NULL)
 	(return node))
 
