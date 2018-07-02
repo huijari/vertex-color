@@ -23,3 +23,14 @@
 		(= graph[to]->neighbors (list_push graph[to]->neighbors from)))
 
 	(return graph))
+
+(function write_round ((uint32_t round)) -> void
+	(decl ((FILE* file = (fopen "rodada.txt" "w"))))
+	(fprintf file "%u\\n" round)
+	(fclose file))
+
+(function write_allocation ((Node** graph) (uint32_t size)) -> void
+	(decl ((FILE* file = (fopen "alocacao.txt" "w"))))
+	(for ((uint32_t i = 0) (< i size) i++)
+		(fprintf file "%u %u\\n" (+ i 1) graph[i]->color))
+	(fclose file))
