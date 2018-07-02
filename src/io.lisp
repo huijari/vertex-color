@@ -13,6 +13,9 @@
 
 	(decl ((Node** graph = (malloc (* (sizeof Node*) numberOfNodes)))))
 
+	(for ((uint32_t i = 0) (< i numberOfNodes) i++)
+		(set graph[i] (node_new)))
+
 	(for ((uint32_t i = 0) (< i numberOfEdges) i++)
 		(decl ((uint32_t from = (- (readInt) 1))
 					 (uint32_t to = (- (readInt) 1))))
