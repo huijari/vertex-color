@@ -5,6 +5,7 @@ const { execSync } = require('child_process')
 const { mkdirSync } = require('fs')
 
 const { name } = require('./package.json')
+const mode = process.argv[2]
 
 const min = 1
 const max = 26
@@ -25,7 +26,7 @@ for (let i = min; i <= max; i++) {
   } catch (e) {
     console.error(red(`Test ${i} failed, wrong round`))
     console.error(e.stdout.toString('utf8'))
-    exit()
+    if (mode !== 'all') exit()
   }
 
   try {
@@ -33,13 +34,13 @@ for (let i = min; i <= max; i++) {
   } catch (e) {
     console.error(red(`Test ${i} failed, wrong allocation`))
     console.error(e.stdout.toString('utf8'))
-    exit()
+    if (mode !== 'all') exit()
   }
 
   console.log(dim(`Test ${i} passed`))
 }
 
-console.log(green('All tests passed'))
+if (mode !== 'all') console.log(green('All tests passed'))
 exit()
 
 function exit() {
