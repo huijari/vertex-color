@@ -8,7 +8,7 @@
 /**
  * Reads an uint32_t from the standard input
  */
-uint32_t readInt();
+uint32_t read_int();
 
 /**
  * Reads nodes and edges from the standard input
@@ -16,6 +16,6 @@ uint32_t readInt();
  * @param numberOfNodes - number of nodes to read
  * @param numberOfEdges - number of edges between then to read
  */
-Node** readGraph(uint32_t numberOfNodes, uint32_t numberOfEdges);
+Node** read_graph(uint32_t numberOfNodes, uint32_t numberOfEdges);
 
 #endif
