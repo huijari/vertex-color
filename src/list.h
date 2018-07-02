@@ -7,6 +7,7 @@
 typedef struct List List;
 struct List {
 	uint32_t value;
+	uint32_t size;
 	List* next;
 };
 
@@ -31,6 +32,13 @@ List* list_pop(List* list);
  * @param list - target
  */
 bool list_empty(List* list);
+
+/**
+ * Returns the list size
+ * 
+ * @param list - target
+ */
+uint32_t list_size(List* list);
 
 /**
  * Frees the memory used by the list, removing every item
