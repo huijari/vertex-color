@@ -5,13 +5,15 @@ const { execSync } = require('child_process')
 const { mkdirSync } = require('fs')
 
 const { name } = require('./package.json')
-const mode = process.argv[2]
+const all = process.argv.indexOf('all') >= 0
+const silent = process.argv.indexOf('silent') >= 0
 
 const min = 1
 const max = 26
 
 mkdirSync('temp')
 for (let i = min; i <= max; i++) {
+  let passed = true
   try {
     process.chdir('temp')
     execSync(`../build/${name} < ../tests/common/entrada${i}.txt`)
@@ -24,23 +26,25 @@ for (let i = min; i <= max; i++) {
   try {
     execSync(`diff tests/common/rodada${i}.txt temp/rodada.txt`)
   } catch (e) {
+    passed = false
     console.error(red(`Test ${i} failed, wrong round`))
-    console.error(e.stdout.toString('utf8'))
-    if (mode !== 'all') exit()
+    if (!silent) console.error(e.stdout.toString('utf8'))
+    if (!all) exit()
   }
 
   try {
     execSync(`diff tests/common/alocacao${i}.txt temp/alocacao.txt`)
   } catch (e) {
+    passed = false
     console.error(red(`Test ${i} failed, wrong allocation`))
-    console.error(e.stdout.toString('utf8'))
-    if (mode !== 'all') exit()
+    if (!silent) console.error(e.stdout.toString('utf8'))
+    if (!all) exit()
   }
 
-  console.log(dim(`Test ${i} passed`))
+  if (passed) console.log(dim(`Test ${i} passed`))
 }
 
-if (mode !== 'all') console.log(green('All tests passed'))
+if (!all) console.log(green('All tests passed'))
 exit()
 
 function exit() {
