@@ -37,5 +37,6 @@
 			(when !touches
 				(set vertices[i]->color max_color)
 				uncolored--)))
-
+				
+	(free vertices)
 	(return max_color))

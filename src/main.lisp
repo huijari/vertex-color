@@ -1,9 +1,7 @@
 (include "io.h")
-(include "list.h")
 (include "node.h")
 (include "heuristic.h")
 
-(include <stdio.h>)
 (include <stdlib.h>)
 
 (function main () -> int
@@ -14,5 +12,9 @@
 
 	(write_round color)
 	(write_allocation graph vertices)
+
+	(for ((uint32_t i = 0) (< i vertices) i++)
+		(node_drop graph[i]))
+	(free graph)
 
 	(return 0))
