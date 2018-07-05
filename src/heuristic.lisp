@@ -30,7 +30,7 @@
 			(decl ((bool touches = false)
 						 (List* neighbor = vertices[i]->neighbors)))
 			(while (!= neighbor NULL)
-				(when (== vertices[neighbor->value]->color max_color)
+				(when (== graph[neighbor->value]->color max_color)
 					(set touches true)
 					(break))
 				(set neighbor neighbor->next))
